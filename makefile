@@ -5,7 +5,7 @@ clean:
 	find . -type f -name "*.sig" -delete
 
 test:
-	@echo "No tests configured yet — override this target"
+	@echo "No tests configured yet - override this target"
 
 copy_remote:
 	rsync -avz --delete ./ $(ssh):$(REMOTE_DIR)
