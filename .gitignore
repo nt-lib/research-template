@@ -1,0 +1,14 @@
+# Magma
+*.sig
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+
+# SageMath
+*.sage.py
+
+# Editor backups
+*~
+*.bak
