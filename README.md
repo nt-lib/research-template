@@ -8,27 +8,41 @@
 - Magma v2.29-1 or higher
 - SageMath X.Y
 - Python 3.x
+- GNU parallel
 -->
 
 ## Project layout
 
 | Directory | Contents |
 |-----------|----------|
-| `src/`    | Source code (Magma `.m` files, Python scripts, SageMath notebooks, etc.) |
-| `tests/`  | Test scripts |
+| `computations/` | Magma `.m` and SageMath `.sage` scripts run by `verify_all.sh` |
+| `logs/` | Output from `verify_all.sh` (committed as a record of the computations) |
+| `src/` | Library/source code shared across computations |
+| `tests/` | Test scripts |
+
+## Running computations
+
+To run all scripts in `computations/` in parallel (requires GNU parallel):
+
+```bash
+make verify
+# or directly:
+bash verify_all.sh        # uses 10 parallel jobs by default
+bash verify_all.sh 4      # use 4 parallel jobs
+```
+
+Output lands in `logs/<script-name>.txt`. SageMath scripts also produce `logs/<script-name>.timing.txt`.
 
 ## Running tests
 
-From the repository root:
-
-```
+```bash
 make test
 ```
 
-To run on a remote machine (syncs via rsync, then runs `make test` over SSH):
+## Running on a remote machine
+
+Syncs the repo to `/tmp/<repo-name>/` on the remote and runs `make test` there:
 
 ```bash
 make test_remote ssh="user@hostname"
 ```
-
-The repo is synced to `/tmp/<repo-name>/` on the remote.

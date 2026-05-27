@@ -9,6 +9,17 @@ __pycache__/
 # SageMath
 *.sage.py
 
-# Editor backups
+# Jupyter
+.ipynb_checkpoints
+
+# Editors
+*.swp
 *~
 *.bak
+.idea/
+
+# macOS
+.DS_Store
+
+# Scratch work
+scratch/

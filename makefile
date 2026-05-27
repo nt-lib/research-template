@@ -1,4 +1,4 @@
-.PHONY: clean test copy_remote test_remote
+.PHONY: clean test verify copy_remote test_remote
 REMOTE_DIR := /tmp/$(shell basename $(CURDIR))
 
 clean:
@@ -6,6 +6,9 @@ clean:
 
 test:
 	@echo "No tests configured yet - override this target"
+
+verify:
+	bash verify_all.sh
 
 copy_remote:
 	rsync -avz --delete ./ $(ssh):$(REMOTE_DIR)
