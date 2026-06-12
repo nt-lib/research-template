@@ -25,10 +25,8 @@
 To run all scripts in `computations/` in parallel (requires GNU parallel):
 
 ```bash
-make verify
-# or directly:
-bash verify_all.sh        # uses 10 parallel jobs by default
-bash verify_all.sh 4      # use 4 parallel jobs
+make verify           # uses 10 parallel jobs by default
+bash verify_all.sh 4  # or call the script directly to set the job count
 ```
 
 Output lands in `logs/<script-name>.txt`. SageMath scripts also produce `logs/<script-name>.timing.txt`.
@@ -41,8 +39,24 @@ make test
 
 ## Running on a remote machine
 
-Syncs the repo to `/tmp/<repo-name>/` on the remote and runs `make test` there:
+```bash
+make verify_remote ssh="user@hostname"  # sync and run all computations
+make copy_logs     ssh="user@hostname"  # fetch logs back afterwards
+```
+
+## Troubleshooting
+
+**`parallel: command not found`**
+
+GNU parallel is not installed.  Install it with:
 
 ```bash
-make test_remote ssh="user@hostname"
+# macOS
+brew install parallel
+
+# Debian / Ubuntu
+sudo apt install parallel
+
+# RHEL / Fedora
+sudo dnf install parallel
 ```
